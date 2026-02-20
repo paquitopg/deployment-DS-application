@@ -5,6 +5,7 @@ This is a module docstring
 import os
 import argparse
 import pandas as pd
+from dotenv import load_dotenv
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
@@ -19,6 +20,8 @@ titanic = pd.read_csv("data.csv")
 
 
 con = duckdb.connect(database=":memory:")
+
+load_dotenv()
 
 # Check la structure de Name "Nom, Prénom"
 bad = con.sql("""
@@ -109,9 +112,6 @@ else:
     message = "Pas de problème de data leakage pour la variable Embarked"
 
 print(message)
-
-
-JETONAPI = "$trotskitueleski1917"
 
 # Vérifie les valeurs manquantes
 # TODO: généraliser à toutes les variables
